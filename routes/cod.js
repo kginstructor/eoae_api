@@ -21,16 +21,16 @@ routes.all("/:endpoint/:gamerTag/:platform", function(req, res, next) {
       API.MWmp(req.params.gamerTag, req.params.platform).then(normalSuccess).catch(normalError);
       break;
     case 'multiplayer-matches':
-      API.MWcombatmpdate(req.params.gamerTag, req.params.platform).then(normalSuccess).catch(normalError);
+      API.MWcombatmpdate(req.params.gamerTag, 0, 0, req.params.platform).then(normalSuccess).catch(normalError);
       break;
     case 'leaderboard':
-      API.MWleaderboard(req.params.gamerTag, req.params.platform).then(normalSuccess).catch(normalError);
+      API.MWleaderboard(1, req.params.platform).then(normalSuccess).catch(normalError);
       break;
     case 'warzone':
       API.MWwz(req.params.gamerTag, req.params.platform).then(normalSuccess).catch(normalError);
       break;
     case 'warzone-matches':
-      API.MWcombatwzdate(req.params.gamerTag, req.params.platform).then(normalSuccess).catch(normalError);
+      API.MWcombatwzdate(req.params.gamerTag, 0, 0, req.params.platform).then(normalSuccess).catch(normalError);
       break;
     case 'map-list':
       API.MWMapList(req.params.platform).then(normalSuccess).catch(normalError);
