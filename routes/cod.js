@@ -14,14 +14,16 @@ routes.all("/:endpoint/:gamerTag/:platform", function(req, res, next) {
   };
   const normalError = function(err) {
     console.error(err);
-    res.send('"Error":"COD API ERROR: '+err+'"');
+    res.send('{ "Error":"COD API ERROR: '+err+'" }');
   };
   switch (req.params.endpoint.toLowerCase()) {
     case 'multiplayer':
       API.MWmp(req.params.gamerTag, req.params.platform).then(normalSuccess).catch(normalError);
       break;
     case 'multiplayer-matches':
-      API.MWcombatmpdate(req.params.gamerTag, 0, 0, req.params.platform).then(normalSuccess).catch(normalError);
+      var start = res.params.startTime ? res.params.startTime : 0;
+      var stop = res.params.stopTime ? res.params.stopTime : 0;
+      API.MWcombatmpdate(req.params.gamerTag, start, stop, req.params.platform).then(normalSuccess).catch(normalError);
       break;
     case 'leaderboard':
       API.MWleaderboard(1, req.params.platform).then(normalSuccess).catch(normalError);
@@ -30,7 +32,9 @@ routes.all("/:endpoint/:gamerTag/:platform", function(req, res, next) {
       API.MWwz(req.params.gamerTag, req.params.platform).then(normalSuccess).catch(normalError);
       break;
     case 'warzone-matches':
-      API.MWcombatwzdate(req.params.gamerTag, 0, 0, req.params.platform).then(normalSuccess).catch(normalError);
+      var start = res.params.startTime ? res.params.startTime : 0;
+      var stop = res.params.stopTime ? res.params.stopTime : 0;
+      API.MWcombatwzdate(req.params.gamerTag, start, stop, req.params.platform).then(normalSuccess).catch(normalError);
       break;
     case 'map-list':
       API.MWMapList(req.params.platform).then(normalSuccess).catch(normalError);
