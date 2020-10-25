@@ -26,7 +26,8 @@ routes.all("/:endpoint/:gamerTag/:platform", function(req, res, next) {
       API.MWcombatmpdate(req.params.gamerTag, start, stop, req.params.platform).then(normalSuccess).catch(normalError);
       break;
     case 'leaderboard':
-      API.MWleaderboard(1, req.params.platform).then(normalSuccess).catch(normalError);
+      var page = req.params.page ? req.params.page : 1;
+      API.MWleaderboard(page, req.params.platform).then(normalSuccess).catch(normalError);
       break;
     case 'warzone':
       API.MWwz(req.params.gamerTag, req.params.platform).then(normalSuccess).catch(normalError);
