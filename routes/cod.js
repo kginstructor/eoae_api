@@ -21,8 +21,8 @@ routes.all("/:endpoint/:gamerTag/:platform", function(req, res, next) {
       API.MWmp(req.params.gamerTag, req.params.platform).then(normalSuccess).catch(normalError);
       break;
     case 'multiplayer-matches':
-      var start = res.params.startTime ? res.params.startTime : 0;
-      var stop = res.params.stopTime ? res.params.stopTime : 0;
+      var start = req.params.startTime ? req.params.startTime : 0;
+      var stop = req.params.stopTime ? req.params.stopTime : 0;
       API.MWcombatmpdate(req.params.gamerTag, start, stop, req.params.platform).then(normalSuccess).catch(normalError);
       break;
     case 'leaderboard':
@@ -32,8 +32,8 @@ routes.all("/:endpoint/:gamerTag/:platform", function(req, res, next) {
       API.MWwz(req.params.gamerTag, req.params.platform).then(normalSuccess).catch(normalError);
       break;
     case 'warzone-matches':
-      var start = res.params.startTime ? res.params.startTime : 0;
-      var stop = res.params.stopTime ? res.params.stopTime : 0;
+      var start = req.params.startTime ? req.params.startTime : 0;
+      var stop = req.params.stopTime ? req.params.stopTime : 0;
       API.MWcombatwzdate(req.params.gamerTag, start, stop, req.params.platform).then(normalSuccess).catch(normalError);
       break;
     case 'map-list':
