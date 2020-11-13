@@ -37,6 +37,18 @@ routes.all("/:endpoint/:gamerTag/:platform", function(req, res, next) {
       var stop = req.params.stopTime ? req.params.stopTime : 0;
       API.MWcombatwzdate(req.params.gamerTag, start, stop, req.params.platform).then(normalSuccess).catch(normalError);
       break;
+    case 'coldwar':
+      API.CWmp(req.params.gamerTag, req.params.platform).then(normalSuccess).catch(normalError);
+      break;
+    case 'coldwwar-matches':
+      var start = req.params.startTime ? req.params.startTime : 0;
+      var stop = req.params.stopTime ? req.params.stopTime : 0;
+      API.CWcombatdate(req.params.gamerTag, start, stop, req.params.platform).then(normalSuccess).catch(normalError);
+      break;
+    case 'coldwwar-fullmatchinfo':
+      var matchId = req.params.matchId ? req.params.matchId : 0;
+      API.CWFullMatchInfo(matchId, req.params.platform).then(normalSuccess).catch(normalError);
+      break;
     case 'map-list':
       API.MWMapList(req.params.platform).then(normalSuccess).catch(normalError);
       break;
